@@ -1,143 +1,121 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>E-Waste Facility Locator</title>
+    <title>E-Waste Locator with Bing Maps</title>
     <style>
         body {
-            background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);
-            background-size: 200% 200%;
-            animation: gradient 5s ease infinite;
-            text-align: center;
+            background-color: #3498db;
+            color: #fff;
             font-family: Arial, sans-serif;
-            padding: 100px;
-            margin: 0;
-            height: 100vh;
+            text-align: center;
+            padding: 50px;
         }
-
+        
         h1 {
             font-size: 36px;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
-
+        
         p {
             font-size: 24px;
-            color: #fff;
         }
-
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            100% {
-                background-position: 100% 50%;
-            }
+        
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+        
+        .button {
+            padding: 15px 30px;
+            background-color: #2ecc71;
+            color: #fff;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .button:hover {
+            background-color: #27ae60;
         }
 
         #map {
-            width: 100%;
-            height: 400px;
-            margin-top: 20px;
             display: none;
+            height: 400px; /* Adjust the height as needed */
+            width: 80%; /* Adjust the width as needed */
+            margin: 0 auto;
         }
 
-        #facility-list {
-            text-align: left;
+        /* Style for images */
+        .ewaste-images {
+            display: flex;
+            justify-content: center;
             margin-top: 20px;
+        }
+
+        .ewaste-image {
+            width: 150px;
+            height: 150px;
+            margin: 0 20px;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to the E-Waste Facility Locator</h1>
-    <p>Discover the Nearest E-Waste Facilities</p>
-    
-    <button onclick="getLocation()">Get My Location</button>
-    
-    <div id="map"></div>
-    <div id="facility-list"></div>
+    <h1>Welcome to E-Waste Locator</h1>
+    <p>Find the nearest e-waste facilities and learn about responsible e-waste disposal.</p>
 
-    <script type="text/javascript" src="https://www.bing.com/api/maps/mapcontrol?key=YOUR_BING_MAPS_API_KEY"></script>
+    <div class="ewaste-images">
+        <img src="IMAGE_URL_1" alt="E-Waste Example 1" class="ewaste-image">
+        <img src="IMAGE_URL_2" alt="E-Waste Example 2" class="ewaste-image">
+        <img src="IMAGE_URL_3" alt="E-Waste Example 3" class="ewaste-image">
+    </div>
+
+    <div class="button-container">
+        <button class="button" onclick="getLocation()">Get Started</button>
+    </div>
+
+    <p id="demo"></p>
+
+    <div id="map"></div>
+
+    <script src="https://www.bing.com/api/maps/mapcontrol?key=AIcL2ePYNZXM_aPOfy1We7acokuXCiMP-TBUGECJÍFbCAfBxO9rKUZ7KM6VZEjFU4&callback=initMap" async defer></script>
     <script>
         var map;
-        var searchManager;
 
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition, showError);
-            } else {
-                alert("Geolocation is not supported by this browser.");
-            }
-        }
-
-        function showPosition(position) {
-            var latitude = position.coords.latitude;
-            var longitude = position.coords.longitude;
-
-            var mapOptions = {
-                credentials: "AjLC2ePYNzXM_aPOfy1We7ac9kuXCiMPTBUGEcJfFbCAfBxo9rKuz7kM6vzEjFu4",
-                center: new Microsoft.Maps.Location(latitude, longitude),
-                mapTypeId: Microsoft.Maps.MapTypeId.road,
-                zoom: 12
-            };
-
-            map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
-            map.setView({ center: new Microsoft.Maps.Location(latitude, longitude), zoom: 12 });
-
-            var pushpin = new Microsoft.Maps.Pushpin(map.getCenter(), null);
-            map.entities.push(pushpin);
-
-            // Show the map div
-            document.getElementById("map").style.display = "block";
-
-            // Initialize the search manager
-            Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
-                searchManager = new Microsoft.Maps.Search.SearchManager(map);
-                searchEwasteFacilities();
+        function initMap() {
+            map = new Microsoft.Maps.Map(document.getElementById('map'), {
+                credentials: 'AIcL2ePYNZXM_aPOfy1We7acokuXCiMP-TBUGECJÍFbCAfBxO9rKUZ7KM6VZEjFU4', // Include your API key here as well
+                center: new Microsoft.Maps.Location(0, 0), // Center the map at a default location
+                zoom: 10
             });
         }
 
-        function showError(error) {
-            switch (error.code) {
-                case error.PERMISSION_DENIED:
-                    alert("User denied the request for Geolocation.");
-                    break;
-                case error.POSITION_UNAVAILABLE:
-                    alert("Location information is unavailable.");
-                    break;
-                case error.TIMEOUT:
-                    alert("The request to get user location timed out.");
-                    break;
-                case error.UNKNOWN_ERROR:
-                    alert("An unknown error occurred.");
-                    break;
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitude = position.coords.latitude;
+                    var longitude = position.coords.longitude;
+                    document.getElementById("demo").innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude;
+                    var loc = new Microsoft.Maps.Location(latitude, longitude);
+                    map.setView({ center: loc, zoom: 10 });
+
+                    // You can use the Bing Maps REST API to search for nearby e-waste facilities.
+                   https://github.com/reehansk1/reehan.github.io.git/REST/v1/Locations?query=e-waste+facility&key=AiLC2ePYNZXM_aPOfy1We7acokuXCiMP
+TBUGECJÍFbCAfBxO9rKUZ7KM6VZEjFU4
+
+                }, function() {
+                    handleLocationError(true);
+                });
+            } else {
+                handleLocationError(false);
             }
         }
 
-        function searchEwasteFacilities() {
-            var searchRequest = {
-                where: map.getBounds(),
-                what: 'e-waste facility',
-                callback: onSearchSuccess,
-                errorCallback: onSearchError
-            };
-
-            searchManager.search(searchRequest);
-        }
-
-        function onSearchSuccess(result) {
-            var facilityList = document.getElementById('facility-list');
-            facilityList.innerHTML = '<h2>E-Waste Facilities Nearby:</h2>';
-            
-            if (result && result.results) {
-                for (var i = 0; i < result.results.length; i++) {
-                    var facility = result.results[i];
-                    facilityList.innerHTML += '<p><strong>' + facility.name + '</strong><br>' + facility.address.formattedAddress + '</p>';
-                }
-            }
-        }
-
-        function onSearchError(error) {
-            console.log('An error occurred: ' + error);
+        function handleLocationError(browserHasGeolocation) {
+            var errorText = browserHasGeolocation ? 'Error: The Geolocation service failed.' : 'Error: Your browser doesn\'t support geolocation.';
+            document.getElementById("demo").innerHTML = errorText;
         }
     </script>
 </body>
