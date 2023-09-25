@@ -6,8 +6,8 @@
     <script type="text/javascript" src="https://www.bing.com/api/maps/mapcontrol?key=AhhJP508d1oIc3u7miSzBXtA5nDTnjQPdanJThl210aoIP_retrqq9CSGJHX-mbu"></script>
     <style>
         #map {
-            height: 400px;
-            width: 100%;
+            height: 700px;
+            width: 80%;
         }
     </style>
 </head>
@@ -32,7 +32,7 @@
                 );
 
                 // Set the map view to the user's location
-                map.setView({ center: userLocation, zoom: 15 });
+                map.setView({ center:userLocation, zoom: 15 });
 
                 // Create a search manager
                 Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
