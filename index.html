@@ -5,50 +5,30 @@
     <!-- Include the Bing Maps JavaScript API -->
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AhhJP508d1oIc3u7miSzBXtA5nDTnjQPdanJThl210aoIP_retrqq9CSGJHX-mbu'></script>
 
-    <!-- CSS for the modal dialog and page styling -->
+    <!-- CSS for the modal dialog -->
     <style>
-        /* Global page styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
-
-        /* Header styles */
-        header {
-            background-color: #007acc;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 24px;
-        }
-
-        /* Modal styles */
+        /* The modal */
         .modal {
-            display: none;
-            position: fixed;
-            z-index: 1;
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7);
+            background-color: rgba(0,0,0,0.7); /* Black background with opacity */
         }
 
+        /* Modal content */
         .modal-content {
             background-color: #fefefe;
-            margin: 15% auto;
+            margin: 15% auto; /* 15% from the top and centered */
             padding: 20px;
             border: 1px solid #888;
-            width: 80%;
-            max-width: 600px;
-            text-align: center;
+            width: 80%; /* Could be more or less, depending on screen size */
         }
 
+        /* Close button */
         .close {
             color: #aaa;
             float: right;
@@ -62,48 +42,9 @@
             text-decoration: none;
             cursor: pointer;
         }
-
-        /* Main content styles */
-        .container {
-            max-width: 960px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 5px;
-        }
-
-        h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-
-        button {
-            background-color: #007acc;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #005a9e;
-        }
-
-        /* Map styles */
-        #map {
-            height: 400px;
-            width: 100%;
-            margin-top: 20px;
-        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>E-Waste Collection Locator</h1>
-    </header>
-
     <!-- Modal pop-up -->
     <div id="myModal" class="modal">
         <div class="modal-content">
@@ -115,19 +56,60 @@
         </div>
     </div>
 
-    <div class="container">
-        <h1>Find E-Waste Collection Facilities</h1>
+    <h1>Find E-Waste Collection Facilities</h1>
 
-        <!-- Create a button to trigger location detection -->
-        <button onclick="getUserLocation()">Find My Location</button>
+    <!-- Create a button to trigger location detection -->
+    <button onclick="getUserLocation()">Find My Location</button>
 
-        <!-- Create a map container -->
-        <div id="map"></div>
-    </div>
+    <!-- Create a map container -->
+    <div id="map" style="height: 400px; width: 100%;"></div>
 
     <!-- JavaScript to handle location and map -->
     <script>
-        // ... Your JavaScript code remains unchanged ...
+        var map;
+
+        function loadMapScenario() {
+            map = new Microsoft.Maps.Map(document.getElementById('map'), {
+                credentials: 'AhhJP508d1oIc3u7miSzBXtA5nDTnjQPdanJThl210aoIP_retrqq9CSGJHX-mbu',
+                center: new Microsoft.Maps.Location(0, 0), // Default to center of the world
+                zoom: 8
+            });
+
+            // Display the modal dialog when the page loads
+            showModal();
+        }
+
+        // Function to display the modal dialog
+        function showModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'block';
+        }
+
+        // Function to close the modal dialog
+        function closeModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+        }
+
+        // Function to get user's location
+        function getUserLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
+        }
+
+        // Function to display user's location on the map
+        function showPosition(position) {
+            var userLocation = new Microsoft.Maps.Location(position.coords.latitude, position.coords.longitude);
+
+            map.setView({ center: userLocation }); // Center the map on the user's location
+
+            // You can use this userLocation to query e-waste collection facilities near the user using a relevant API.
+            // For example, make an API request to a database of e-waste collection facilities based on userLocation.
+            // Display the results as pushpins on the map.
+        }
     </script>
 
     <!-- Initialize the map when the page loads -->
