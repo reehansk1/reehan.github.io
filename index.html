@@ -5,30 +5,65 @@
     <!-- Include the Bing Maps JavaScript API -->
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=AhhJP508d1oIc3u7miSzBXtA5nDTnjQPdanJThl210aoIP_retrqq9CSGJHX-mbu'></script>
 
-    <!-- CSS for the modal dialog -->
+    <!-- CSS for the page styling and modal dialog -->
     <style>
-        /* The modal */
+        /* Global page styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #ff0000, #00ff00, #0000ff);
+            background-size: 200% 200%;
+            animation: gradient 5s ease infinite;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding: 100px;
+            margin: 0;
+            height: 100vh;
+        }
+
+        h1 {
+            font-size: 36px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        p {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+
+        /* Modal styles */
         .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
+            display: none;
+            position: fixed;
+            z-index: 1;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.7); /* Black background with opacity */
+            background-color: rgba(0,0,0,0.7);
         }
 
-        /* Modal content */
         .modal-content {
             background-color: #fefefe;
-            margin: 15% auto; /* 15% from the top and centered */
+            margin: 15% auto;
             padding: 20px;
             border: 1px solid #888;
-            width: 80%; /* Could be more or less, depending on screen size */
+            width: 80%;
+            max-width: 600px;
+            text-align: center;
         }
 
-        /* Close button */
         .close {
             color: #aaa;
             float: right;
@@ -41,6 +76,36 @@
             color: black;
             text-decoration: none;
             cursor: pointer;
+        }
+
+        /* Main content styles */
+        .container {
+            max-width: 960px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005a9e;
+        }
+
+        /* Map styles */
+        #map {
+            height: 400px;
+            width: 100%;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -56,59 +121,121 @@
         </div>
     </div>
 
-    <h1>Find E-Waste Collection Facilities</h1>
+    <div class="container">
+        <h1>Welcome to the E-Waste Facility Locator</h1>
+        <p>Discover the Nearest E-Waste Facilities</p>
 
-    <!-- Create a button to trigger location detection -->
-    <button onclick="getUserLocation()">Find My Location</button>
+        <button onclick="getLocation()">Get My Location</button>
 
-    <!-- Create a map container -->
-    <div id="map" style="height: 400px; width: 100%;"></div>
+        <div id="map"></div>
+        <div id="facility-list"></div>
+    </div>
 
     <!-- JavaScript to handle location and map -->
     <script>
         var map;
+        var searchManager;
 
-        function loadMapScenario() {
-            map = new Microsoft.Maps.Map(document.getElementById('map'), {
-                credentials: 'AhhJP508d1oIc3u7miSzBXtA5nDTnjQPdanJThl210aoIP_retrqq9CSGJHX-mbu',
-                center: new Microsoft.Maps.Location(0, 0), // Default to center of the world
-                zoom: 8
-            });
-
-            // Display the modal dialog when the page loads
-            showModal();
-        }
-
-        // Function to display the modal dialog
-        function showModal() {
-            var modal = document.getElementById('myModal');
-            modal.style.display = 'block';
-        }
-
-        // Function to close the modal dialog
-        function closeModal() {
-            var modal = document.getElementById('myModal');
-            modal.style.display = 'none';
-        }
-
-        // Function to get user's location
-        function getUserLocation() {
+        function getLocation() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
+                navigator.geolocation.getCurrentPosition(showPosition, showError);
             } else {
                 alert("Geolocation is not supported by this browser.");
             }
         }
 
-        // Function to display user's location on the map
         function showPosition(position) {
-            var userLocation = new Microsoft.Maps.Location(position.coords.latitude, position.coords.longitude);
+            var latitude = position.coords.latitude;
+            var longitude = position.coords.longitude;
 
-            map.setView({ center: userLocation }); // Center the map on the user's location
+            var mapOptions = {
+                credentials: "AjLC2ePYNzXM_aPOfy1We7ac9kuXCiMPTBUGEcJfFbCAfBxo9rKuz7kM6vzEjFu4",
+                center: new Microsoft.Maps.Location(latitude, longitude),
+                mapTypeId: Microsoft.Maps.MapTypeId.road,
+                zoom: 12
+            };
 
-            // You can use this userLocation to query e-waste collection facilities near the user using a relevant API.
-            // For example, make an API request to a database of e-waste collection facilities based on userLocation.
-            // Display the results as pushpins on the map.
+            map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
+            map.setView({ center: new Microsoft.Maps.Location(latitude, longitude), zoom: 12 });
+
+            var pushpin = new Microsoft.Maps.Pushpin(map.getCenter(), null);
+            map.entities.push(pushpin);
+
+            // Show the map div
+            document.getElementById("map").style.display = "block";
+
+            // Initialize the search manager
+            Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+                searchManager = new Microsoft.Maps.Search.SearchManager(map);
+                searchEwasteFacilities();
+            });
+        }
+
+        function showError(error) {
+            switch (error.code) {
+                case error.PERMISSION_DENIED:
+                    alert("User denied the request for Geolocation.");
+                    break;
+                case error.POSITION_UNAVAILABLE:
+                    alert("Location information is unavailable.");
+                    break;
+                case error.TIMEOUT:
+                    alert("The request to get user location timed out.");
+                    break;
+                case error.UNKNOWN_ERROR:
+                    alert("An unknown error occurred.");
+                    break;
+            }
+        }
+
+        function searchEwasteFacilities() {
+            var searchRequest = {
+                where: map.getBounds(),
+                what: 'e-waste facility',
+                callback: onSearchSuccess,
+                errorCallback: onSearchError
+            };
+
+            searchManager.search(searchRequest);
+        }
+
+        function onSearchSuccess(result) {
+            var facilityList = document.getElementById('facility-list');
+            facilityList.innerHTML = '<h2>E-Waste Facilities Nearby:</h2>';
+            
+            if (result && result.results) {
+                for (var i = 0; i < result.results.length; i++) {
+                    var facility = result.results[i];
+                    facilityList.innerHTML += '<p><strong>' + facility.name + '</strong><br>' + facility.address.formattedAddress + '</p>';
+                }
+            }
+        }
+
+        function onSearchError(error) {
+            console.log('An error occurred: ' + error);
+        }
+
+        // Modal functions
+        function showModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'block';
+        }
+
+        function closeModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = 'none';
+        }
+
+        // Function to get user's location and close the modal
+        function getUserLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    showPosition(position);
+                    closeModal(); // Close the modal when location is obtained
+                }, showError);
+            } else {
+                alert("Geolocation is not supported by this browser.");
+            }
         }
     </script>
 
