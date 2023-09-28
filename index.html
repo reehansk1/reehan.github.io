@@ -207,9 +207,7 @@ function showPosition(position) {
 
     map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
 
-    var pushpin = new Microsoft.Maps.Pushpin(map.getCenter(), null{
-  title: 'My Location',
-});
+    var pushpin = new Microsoft.Maps.Pushpin(map.getCenter(), null);
             map.entities.push(pushpin);
     
     var location = new Microsoft.Maps.Location(13.110350, 80.213196{
