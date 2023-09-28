@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>E-Waste Collection Locator</title>
-    <!-- Include the Bing Maps JavaScript API -->
-    <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=Am9bDk1NjZHSouK39aSE9LuUJ0Z-eOjT_p8cZbuPqRSoNEIz6k61HB94NP6DGN1t'></script>
-
-    <!-- CSS for the page styling and modal dialog -->
+    <title>E-Waste Facility Locator</title>
+ <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=Am9bDk1NjZHSouK39aSE9LuUJ0Z-eOjT_p8cZbuPqRSoNEIz6k61HB94NP6DGN1t'></script>
     <style>
         /* Global page styles */
         body {
@@ -108,13 +105,37 @@
             margin-top: 20px;
         }
     </style>
+      <title>creating mailing system</title>
+    <style>
+        legend {
+            display: block;
+            padding-left: 2px;
+            padding-right: 2px;
+            border: none;
+        }
+    </style>
+    <script type="text/javascript">
+        function validate() {
+  
+            var user = document.getElementById("e").value;
+            var user2 = document.getElementById("e");
+            var re = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
+            if (re.test(user)) {
+                alert("done");
+                return true;
+            }
+            else {
+                user2.style.border = "red solid 3px";
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
-    <!-- Modal pop-up -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Welcome to E-Waste Collection Locator</h2>
+            <h2>Welcome to E-Waste Facility Locator</h2>
             <img src="https://diligentias.com/wp-content/uploads/2019/10/E-waste.jpg" alt="E-Waste" style="max-width: 100%;">
             <p>This website helps you find E-Waste Collection Facilities. 
                 E-waste produces toxic substances if not disposed properly.
@@ -123,16 +144,7 @@
             <button onclick="getUserLocation()">Find My Location</button>
         </div>
     </div> 
-     <h2>Login</h2>
-    <form action="login_process.php" method="post">
-        <label for="email_or_phone">Email or Phone Number:</label>
-        <input type="text" id="email_or_phone" name="email_or_phone" required><br><br>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required><br><br>
-
-        <input type="submit" value="Login">
-    </form>
+     
 
     <div class="container">
         <h1>Welcome to the E-Waste Facility Locator</h1>
@@ -143,8 +155,32 @@
         <div id="map"></div>
         <div id="facility-list"></div>
     </div>
-
-    <!-- JavaScript to handle location and map -->
+     <center>
+        <h1>Login </h1>
+        <form>
+            <fieldset style="width:300px">
+                <legend>Login Form</legend>
+                <table>
+                    <tr>
+                        <input type="text" 
+                            placeholder="Name" 
+                            maxlength="10">
+                                       </tr>
+                    <br><br>
+                    <tr>
+                        <input type="email" 
+                            placeholder="username@gmail.com" id="e">
+                    </tr>
+                    <br><br>
+                                        <br><br>
+                      <br><br>
+                    <tr><input type="submit" 
+                        onclick="validate()" value="create">
+                    </tr>
+                </table>
+            </fieldset>
+        </form>
+    </center>
     <script>
         var map;
         var searchManager;
@@ -173,11 +209,7 @@
 
             var pushpin = new Microsoft.Maps.Pushpin(map.getCenter(), null);
             map.entities.push(pushpin);
-
-            // Show the map div
             document.getElementById("map").style.display = "block";
-
-            // Initialize the search manager
             Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
                 searchManager = new Microsoft.Maps.Search.SearchManager(map);
                 searchEwasteFacilities();
@@ -251,8 +283,6 @@
             }
         }
     </script>
-
-    <!-- Initialize the map when the page loads -->
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=loadMapScenario' async defer></script>
 </body>
 </html>
