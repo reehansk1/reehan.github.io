@@ -236,8 +236,9 @@
 
         function searchEwasteFacilities() {
             var searchRequest = {
-                where: map.getBounds(),
-                what: 'e-waste facility',
+                bounds =map.getBounds()
+                where:bounds ,
+                what: 'electronic waste',
                 callback: onSearchSuccess,
                 errorCallback: onSearchError
             };
@@ -256,6 +257,12 @@ facilityList.innerHTML = '';
 for (var i = 0; i < result.results.length; i++) {
 var facility = result.results[i];
 facilityList.innerHTML += '<p><strong>' + facility.name + '</strong><br>' + facility.address.formattedAddress + '</p>';
+     map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
+            map.setView({ center: new Microsoft.Maps.Location(latitude, longitude), zoom: 12 });
+
+            var pushpin = new Microsoft.Maps.Pushpin(map.getCenter(), null);
+            map.entities.push(pushpin);
+            document.getElementById("map").style.display = "block";
 }
 }
 
