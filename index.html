@@ -257,11 +257,20 @@ function showPosition(position) {
 
 // Add the pushpin to the map.
 map.entities.push(pushpin);
-var location = new Microsoft.Maps.Location(13.110350, 80.213196);
-var pushpin = new Microsoft.Maps.Pushpin(location, {
+// Create a new pushpin with custom options
+var pushpinOptions = {
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png', 
   title: 'VIROGREEN INDIA pvt ltd',
   subtitle: '09940831313'
+};
+var location = new Microsoft.Maps.Location(13.110350, 80.213196);
+var pushpin = new Microsoft.Maps.Pushpin(location, pushpinOptions);
+map.entities.push(pushpin);
+var redirectUrl = 'https://virogreen.in/'; 
+Microsoft.Maps.Events.addHandler(pushpin, 'click', function (e) {
+  window.location.href = redirectUrl;
 });
+
 map.entities.push(pushpin);
     var location = new Microsoft.Maps.Location(19.073334, 72.995331);
 var pushpin = new Microsoft.Maps.Pushpin(location, {
