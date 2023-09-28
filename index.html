@@ -1,72 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>E-Waste_facility_locator</title>
-    <script type="text/javascript" src="https://www.bing.com/api/maps/mapcontrol?key=AhhJP508d1oIc3u7miSzBXtA5nDTnjQPdanJThl210aoIP_retrqq9CSGJHX-mbu"></script>
-    <style>
-        #map {
-            height: 400px;
-            width: 100%;
-        }
-    </style>
-</head>
-<body>
-    <h1>Find E-Waste processing Facility Near You</h1>
-    <div id="map"></div>
+<!DOCTYPE HTML>
+<html>
+  <head>
     <script>
-        let map;
-        let searchManager;
+      function giveRandomVoucher() {
+        // Create an array of all the vouchers.
+        var vouchers = ["VOUCHER_1", "VOUCHER_2", "VOUCHER_3"];
 
-        function loadMapScenario() {
-            // Initialize the map
-            map = new Microsoft.Maps.Map(document.getElementById('map'), {
-                credentials: 'AhhJP508d1oIc3u7miSzBXtA5nDTnjQPdanJThl210aoIP_retrqq9CSGJHX-mbu'
-            });
-
-            // Enable geolocation
-            navigator.geolocation.getCurrentPosition(function (position) {
-                const userLocation = new Microsoft.Maps.Location(
-                    position.coords.latitude,
-                    position.coords.longitude
-                );
-
-                // Set the map view to the user's location
-                map.setView({ center: userLocation, zoom: 15 });
-
-                // Create a search manager
-                Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
-                    searchManager = new Microsoft.Maps.Search.SearchManager(map);
-                    searchCoffeeShops(userLocation);
-                });
-            });
+        // Check if the vouchers array is empty.
+        if (vouchers.length === 0) {
+          // Handle the empty vouchers array case.
+          return;
         }
 
-        function searchCoffeeShops(userLocation) {
-            const coffeeShopRequest = {
-                location: userLocation,
-                radius: 50000, // in meters, adjust as needed
-                query: 'electronic waste'
-            };
-
-            searchManager.search(coffeeShopRequest, function (searchResults) {
-                if (searchResults && searchResults.results && searchResults.results.length > 0) {
-                    // Clear any existing pins
-                    map.entities.clear();
-
-                    // Add pushpins for each coffee shop
-                    for (let i = 0; i < searchResults.results.length; i++) {
-                        const coffeeShop = searchResults.results[i];
-                        const coffeeShopPin = new Microsoft.Maps.Pushpin(coffeeShop.location, {
-                            title: coffeeShop.name,
-                            subTitle: coffeeShop.address.formattedAddress
-                        });
-                        map.entities.push(coffeeShopPin);
-                    }
-                }
-            });
+        // Try to generate a random index into the vouchers array.
+        try {
+          var randomIndex = Math.floor(Math.random() * vouchers.length);
+        } catch (error) {
+          // Handle the out-of-bounds index case.
+          return;
         }
+
+        // Get the random voucher code.
+        var voucherCode = vouchers[randomIndex];
+
+        // Validate the voucher code.
+        if (!voucherCode) {
+          // Handle the invalid voucher code case.
+          return;
+        }
+
+        // Display the voucher code to the user.
+        alert("Your voucher code is: " + voucherCode);
+      }
     </script>
-    <script type="text/javascript" src="https://www.bing.com/api/maps/mapcontrol?callback=loadMapScenario"></script>
-</body>
+  </head>
+  <body>
+    <button type="button" onclick="giveRandomVoucher()">Give Random Voucher</button>
+  </body>
 </html>
