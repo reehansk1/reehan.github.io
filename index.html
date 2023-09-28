@@ -461,7 +461,7 @@ map.entities.push(pushpin);
     </script>
         <script>
       function giveRandomVoucher() {
-          <button onclick=Login()>login to get credits</button>
+         
         // Create an array of all the vouchers.
         var vouchers = [
           "USE CAFOMCG5H FOR UPTO 80%OFF ON ELECTRONICS IN CROMA",
@@ -478,9 +478,7 @@ map.entities.push(pushpin);
         ];
            if (vouchers.length === 0) {
           return;
-            }
-        
-        try {
+            } try {
           var randomIndex = Math.floor(Math.random() * vouchers.length);
         } catch (error) {
           return;
@@ -492,39 +490,5 @@ map.entities.push(pushpin);
         alert("Your voucher code is: " + voucherCode);
       }
     </script>
-    <script>
-   function Login()
-    <h1>Login</h1>
-    <form action="/login" method="post" onsubmit="return validateForm()">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required>
-
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required>
-
-      <input type="submit" value="Login">
-    </form>
-        </script>
-    <script>
-      function validateForm() {
-        var username = document.getElementById("username").value;
-        var password = document.getElementById("password").value;
-        var usernameRegex = /^[a-zA-Z0-9_]{3,20}$/; 
-        var passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-        if (!usernameRegex.test(username)) {
-          alert("Username must be alphanumeric and contain 3-20 characters.");
-          return false;
-        }
-
-        if (!passwordRegex.test(password)) {
-          alert("Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number.");
-          return false;
-        }
-        alert("Login successful!");
-        return true;
-      }
-    </script>
-    
-
 </body>
 </html>
