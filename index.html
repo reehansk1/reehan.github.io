@@ -229,36 +229,32 @@
   <button onclick="getLocation()">Get My Location</button>
 
     <script>
-      var map;
-var searchManager;
+        var map;
+        var searchManager;
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(showPosition, showError);
-  } else {
-    alert("Geolocation is not supported by this browser.");
-  }
+       function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
 }
 
 function showPosition(position) {
-  var latitude = position.coords.latitude;
-  var longitude = position.coords.longitude;
+    var latitude = position.coords.latitude;
+    var longitude = position.coords.longitude;
 
-  var mapOptions = {
-    credentials: "Am9bDk1NjZHSouK39aSE9LuUJ0Z-eOjT_p8cZbuPqRSoNEIz6k61HB94NP6DGN1t",
-    center: new Microsoft.Maps.Location(latitude, longitude),
-    mapTypeId: Microsoft.Maps.MapTypeId.road,
-    zoom: 25
-  };
+    var mapOptions = {
+        credentials: "Am9bDk1NjZHSouK39aSE9LuUJ0Z-eOjT_p8cZbuPqRSoNEIz6k61HB94NP6DGN1t", 
+        center: new Microsoft.Maps.Location(latitude, longitude),
+        mapTypeId: Microsoft.Maps.MapTypeId.road,
+        zoom: 12
+    };
 
-  map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
+    map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
 
-  // Change the pushpin variable to be a Microsoft.Maps.Pushpin object
   var pushpin = new Microsoft.Maps.Pushpin(map.getCenter());
-
-  // Add the pushpin to the map
-  map.entities.push(pushpin);
-}
+map.entities.push(pushpin);
 var pushpinOptions = {
   icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png', 
   title: 'VIROGREEN INDIA pvt ltd phn:09940831313'
@@ -277,7 +273,7 @@ Microsoft.Maps.Events.addHandler(pushpin, 'click', function (e) {
     var location = new Microsoft.Maps.Location(19.073334, 72.995331);
 var pushpin = new Microsoft.Maps.Pushpin(location, pushpinOptions);
     map.entities.push(pushpin);
-    var redirectUrl = 'http://greenindiarecycling.co.in/'; 
+    var redirectUrl = 'https://virogreen.in/'; 
 Microsoft.Maps.Events.addHandler(pushpin, 'click', function (e) {
   window.location.href = redirectUrl;
 });
@@ -413,7 +409,7 @@ var pushpin = new Microsoft.Maps.Pushpin(location, pushpinOptions);
 
 map.entities.push(pushpin);
         var pushpinOptions = {
-  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png'
  title: 'Greenzon Recycling pvt ltd pn:09811206076'
 }
 var location = new Microsoft.Maps.Location(28.548362,77.252773);
@@ -429,14 +425,14 @@ var pushpin = new Microsoft.Maps.Pushpin(location, pushpinOptions);
   
 map.entities.push(pushpin);
         var pushpinOptions = {
-  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png', 
-title: 'E waste recycling company phn:08806525480'
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png' 
+title: 'E waste recycling company phn:08806525480',
         }
 var location = new Microsoft.Maps.Location(19.095081,72.887159);
 var pushpin = new Microsoft.Maps.Pushpin(location, pushpinOptions);
 map.entities.push(pushpin);
         var pushpinOptions = {
-  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png'
   title: 'E waste mart- Electronic Waste'
  
 }
@@ -445,7 +441,7 @@ var pushpin = new Microsoft.Maps.Pushpin(location, pushpinOptions);
 
 map.entities.push(pushpin);
         var pushpinOptions = {
-  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png'
  title: 'S.N computer scrap- e waste recycling phn:09920792738'
 
 }
@@ -454,7 +450,7 @@ var pushpin = new Microsoft.Maps.Pushpin(location, pushpinOptions);
  
 map.entities.push(pushpin);
         var pushpinOptions = {
-  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png' 
   title: 'Inaaya Recyling e waste phn:09167205444'
         }
 var location = new Microsoft.Maps.Location(19.118524,72.885466);
@@ -462,7 +458,7 @@ var pushpin = new Microsoft.Maps.Pushpin(location, pushpinOptions);
 
 map.entities.push(pushpin);
         var pushpinOptions = {
-  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png'
  title: 'Collection box waste management company phn:08921570433'
 }
 var location = new Microsoft.Maps.Location(9.982434,76.442710);
@@ -470,7 +466,7 @@ var pushpin = new Microsoft.Maps.Pushpin(location, pushpinOptions);
  
 map.entities.push(pushpin);
         var pushpinOptions = {
-  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png'
 title: 'Green people kochi phn:09167205444'
 }
 var location = new Microsoft.Maps.Location(10.035209,76.424296);
@@ -491,7 +487,8 @@ map.entities.push(pushpin);
 var location = new Microsoft.Maps.Location(9.931404,76.267074);
 var pushpin = new Microsoft.Maps.Pushpin(location, pushpinOptions);
 map.entities.push(pushpin);
-     document.getElementById("map").style.display = "block";
+    
+    document.getElementById("map").style.display = "block";
             Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
                 searchManager = new Microsoft.Maps.Search.SearchManager(map);
                 searchEwasteFacilities();
