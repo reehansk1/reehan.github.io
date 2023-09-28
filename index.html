@@ -188,75 +188,11 @@
             border: none;
         }
     </style>
-    <script type="text/javascript">
-        function validate() {
-  
-            var user = document.getElementById("e").value;
-            var user2 = document.getElementById("e");
-            var re = /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/;
-            if (re.test(user)) {
-                alert("done");
-                return true;
-            }
-            else {
-                user2.style.border = "red solid 3px";
-                return false;
-            }
-        }
-    </script>
+    <button onclick= "getLocation()"> Get My Location</button>
 </head>
 <body>
     
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Welcome to E-Waste Facility Locator</h2>
-            <img src="https://diligentias.com/wp-content/uploads/2019/10/E-waste.jpg" alt="E-Waste" style="max-width: 100%;">
-            <p>This website helps you find E-Waste Collection Facilities. 
-                E-waste produces toxic substances if not disposed properly.
-           it effects human health severly.
-            </p>
-           
-            <button onclick="getUserLocation()">Find My Location</button>
-        </div>
-    </div> 
-     
- 
-    <div class="container">
-        <h1>Welcome to the E-Waste Facility Locator</h1>
-        <p>Discover the Nearest E-Waste Facilities</p>
 
-        <button onclick="getLocation()">Get My Location</button>
-
-        <div id="map"></div>
-        <div id="facility-list"></div>
-    </div>
-     <center>
-        <h1>Login </h1>
-        <form>
-            <fieldset style="width:300px">
-                <legend>Login Form</legend>
-                <table>
-                    <tr>
-                        <input type="text" 
-                            placeholder="Name" 
-                            maxlength="10">
-                                       </tr>
-                    <br><br>
-                    <tr>
-                        <input type="email" 
-                            placeholder="username@gmail.com" id="e">
-                    </tr>
-                    <br><br>
-                                        <br><br>
-                      <br><br>
-                    <tr><input type="submit" 
-                        onclick="validate()" value="create">
-                    </tr>
-                </table>
-            </fieldset>
-        </form>
-    </center>
     <script>
         var map;
         var searchManager;
@@ -344,30 +280,6 @@ facilityList.innerHTML += '<p><strong>' + facility.name + '</strong><br>' + faci
         function onSearchError(error) {
             console.log('An error occurred: ' + error);
         }
-
-        // Modal functions
-        function showModal() {
-            var modal = document.getElementById('myModal');
-            modal.style.display = 'block';
-        }
-
-        function closeModal() {
-            var modal = document.getElementById('myModal');
-            modal.style.display = 'none';
-        }
-
-        // Function to get user's location and close the modal
-        function getUserLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function(position) {
-                    showPosition(position);
-                    closeModal(); // Close the modal when location is obtained
-                }, showError);
-            } else {
-                alert("Geolocation is not supported by this browser.");
-            }
-        }
-    </script>
     
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=loadMapScenario' async defer></script>
 </body>
