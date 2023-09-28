@@ -27,6 +27,32 @@
           "USE PTRONNCD100 FOR UPTO RS100OFF ON PTRON AUDIO",
           "USE CLICKONIC15 FOR UPTO 15%OFF ON JBL SOUNDBAR"  // Fixed the missing double quote here
         ];
+           if (vouchers.length === 0) {
+          // Handle the empty vouchers array case.
+          return;
+        }
+
+        // Try to generate a random index into the vouchers array.
+        try {
+          var randomIndex = Math.floor(Math.random() * vouchers.length);
+        } catch (error) {
+          // Handle the out-of-bounds index case.
+          return;
+        }
+
+        // Get the random voucher code.
+        var voucherCode = vouchers[randomIndex];
+
+        // Validate the voucher code.
+        if (!voucherCode) {
+          // Handle the invalid voucher code case.
+          return;
+        }
+
+        // Display the voucher code to the user.
+        alert("Your voucher code is: " + voucherCode);
+      }
+    </script>
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=Am9bDk1NjZHSouK39aSE9LuUJ0Z-eOjT_p8cZbuPqRSoNEIz6k61HB94NP6DGN1t'></script>
 <h1>E-waste Facility Locator</h1>
     <div id="map"></div>
