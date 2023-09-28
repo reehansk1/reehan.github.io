@@ -248,16 +248,12 @@ function showPosition(position) {
         credentials: "Am9bDk1NjZHSouK39aSE9LuUJ0Z-eOjT_p8cZbuPqRSoNEIz6k61HB94NP6DGN1t", 
         center: new Microsoft.Maps.Location(latitude, longitude),
         mapTypeId: Microsoft.Maps.MapTypeId.road,
-        zoom: 12
+        zoom: 25
     };
 
     map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
-
   var pushpin = new Microsoft.Maps.Pushpin(map.getCenter());
-
-// Add the pushpin to the map.
 map.entities.push(pushpin);
-// Create a new pushpin with custom options
 var pushpinOptions = {
   icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png', 
   title: 'VIROGREEN INDIA pvt ltd phn:09940831313'
@@ -276,7 +272,7 @@ Microsoft.Maps.Events.addHandler(pushpin, 'click', function (e) {
     var location = new Microsoft.Maps.Location(19.073334, 72.995331);
 var pushpin = new Microsoft.Maps.Pushpin(location, pushpinOptions);
     map.entities.push(pushpin);
-    var redirectUrl = 'https://virogreen.in/'; 
+    var redirectUrl = 'http://greenindiarecycling.co.in/'; 
 Microsoft.Maps.Events.addHandler(pushpin, 'click', function (e) {
   window.location.href = redirectUrl;
 });
