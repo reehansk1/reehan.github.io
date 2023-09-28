@@ -207,10 +207,15 @@ function showPosition(position) {
 
     map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
 
-    var pushpin = new Microsoft.Maps.Pushpin(map.getCenter(), null);
+    var pushpin = new Microsoft.Maps.Pushpin(map.getCenter(), null{
+  title: 'My Location',
+});
             map.entities.push(pushpin);
     
-    var location = new Microsoft.Maps.Location(13.110350, 80.213196);
+    var location = new Microsoft.Maps.Location(13.110350, 80.213196{
+  title: 'VIROGREEN INDIA pvt ltd',
+  subtitle: '09940831313'
+});
 var pushpin = new Microsoft.Maps.Pushpin(location);
 map.entities.push(pushpin);
     
