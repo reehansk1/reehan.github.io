@@ -246,16 +246,18 @@
         }
 
         function onSearchSuccess(result) {
-            var facilityList = document.getElementById('facility-list');
-            facilityList.innerHTML = '<h2>E-Waste Facilities Nearby:</h2>';
-            
-            if (result && result.results) {
-                for (var i = 0; i < result.results.length; i++) {
-                    var facility = result.results[i];
-                    facilityList.innerHTML += '<p><strong>' + facility.name + '</strong><br>' + facility.address.formattedAddress + '</p>';
-                }
-            }
-        }
+// Get the facility list element
+var facilityList = document.getElementById('facility-list');
+
+// Clear the facility list element
+facilityList.innerHTML = '';
+
+// Iterate over the results and add them to the facility list element
+for (var i = 0; i < result.results.length; i++) {
+var facility = result.results[i];
+facilityList.innerHTML += '<p><strong>' + facility.name + '</strong><br>' + facility.address.formattedAddress + '</p>';
+}
+}
 
         function onSearchError(error) {
             console.log('An error occurred: ' + error);
