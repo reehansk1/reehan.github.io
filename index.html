@@ -8,40 +8,25 @@
   <ul class="nav-list">
     <li><a href="#home" onclick="reloadPage()">Home</a></li>
      <li><a href="#aboutus" onclick="aboutUs()">About</a></li>
+       <li><a href="#GetCredits" onclick="giveRandomVoucher()">Get Credits</a></li>
   </ul>
 </nav>
     <script>
       function giveRandomVoucher() {
         // Create an array of all the vouchers.
-        var vouchers = ["VOUCHER_1", "VOUCHER_2", "VOUCHER_3"];
-
-        // Check if the vouchers array is empty.
-        if (vouchers.length === 0) {
-          // Handle the empty vouchers array case.
-          return;
-        }
-
-        // Try to generate a random index into the vouchers array.
-        try {
-          var randomIndex = Math.floor(Math.random() * vouchers.length);
-        } catch (error) {
-          // Handle the out-of-bounds index case.
-          return;
-        }
-
-        // Get the random voucher code.
-        var voucherCode = vouchers[randomIndex];
-
-        // Validate the voucher code.
-        if (!voucherCode) {
-          // Handle the invalid voucher code case.
-          return;
-        }
-
-        // Display the voucher code to the user.
-        alert("Your voucher code is: " + voucherCode);
-      }
-    </script>
+        var vouchers = [
+          "USE CAFOMCG5H FOR UPTO 80%OFF ON ELECTRONICS IN CROMA",
+          "SUPER5",
+          "WPLCOUPONZGURUEXTRA5",
+          "GANESHA10",
+          "USE SALE20 FOR UPTO 80%OFF ON AUDIO DEVICES IN HAMMER",
+          "USE IPURPLEYOU FOR UPTO 60%OFF ON IN BOAT",
+          "USE VLEIO FOR UPTO 10%OFF ON ELECTRONICS IN VLE BAZAR",
+          "USE COUPONDON1A17 FOR UPTO 750OFF ON TABLETS IN LENOVO",
+          "USE AC15 FOR UPTO RS 50FF ON ORDERS IN BOULT AUDIO",
+          "USE PTRONNCD100 FOR UPTO RS100OFF ON PTRON AUDIO",
+          "USE CLICKONIC15 FOR UPTO 15%OFF ON JBL SOUNDBAR"  // Fixed the missing double quote here
+        ];
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?key=Am9bDk1NjZHSouK39aSE9LuUJ0Z-eOjT_p8cZbuPqRSoNEIz6k61HB94NP6DGN1t'></script>
 <h1>E-waste Facility Locator</h1>
     <div id="map"></div>
@@ -423,6 +408,34 @@ var pushpin = new Microsoft.Maps.Pushpin(location, {
   subtitle: '08714777800'
 });
 map.entities.push(pushpin);
+    var location = new Microsoft.Maps.Location(12.95 7955, 80.24 5172);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'Sree E-waste Recycling',
+  subtitle: '07845561376
+'
+});
+map.entities.push(pushpin);
+    var location = new Microsoft.Maps.Location(12.991090, 80.241804);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: ' Waste chakra pvt limited',
+  subtitle: ': 094444 27976
+'
+});
+map.entities.push(pushpin);
+    var location = new Microsoft.Maps.Location(12.989607, 80.248626);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'SKV ewaste recycling Pvt limited',
+  subtitle: '095147 514 75
+'
+});
+map.entities.push(pushpin);
+    var location = new Microsoft.Maps.Location( 13.184105, 80.314011);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'Electronic waste Company',
+  subtitle: ' '
+'
+});
+map.entities.push(pushpin);
     document.getElementById("map").style.display = "block";
             Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
                 searchManager = new Microsoft.Maps.Search.SearchManager(map);
@@ -479,39 +492,7 @@ map.entities.push(pushpin);
         }
     </script>
     <script type='text/javascript' src='https://www.bing.com/api/maps/mapcontrol?callback=loadMapScenario' async defer></script>
-        <script>
-            function giveRandomVoucher() {
-  // Create an array of all the vouchers.
-  var vouchers = ["USE CAFOMCG5H FOR UPTO 80%OFF ON ELECTRONICS IN CROMA", "SUPER5", "WPLCOUPONZGURUEXTRA5","GANESHA10","USE SALE20 FOR UPTO 80%OFF ON AUDIO DEVICES IN HAMMER","USE IPURPLEYOU FOR UPTO 60%OFF ON IN BOAT","USE VLEIO FOR UPTO 10%OFF ON ELECTRONICS IN VLE BAZAR","USE COUPONDON1A17 FOR UPTO 750OFF ON TABLETS IN LENOVO","USE AC15 FOR UPTO RS 50FF ON ORDERS IN BOULT AUDIO","USE PTRONNCD100 FOR UPTO RS100OFF ON PTRON AUDIO","USE CLICKONIC15 FOR UPTO 15%OFF ON JBL SOUNDBAR];
-       
 
-  // Check if the vouchers array is empty.
-  if (vouchers.length === 0) {
-    // Handle the empty vouchers array case.
-    return;
-  }
-
-  // Try to generate a random index into the vouchers array.
-  try {
-    var randomIndex = Math.floor(Math.random() * vouchers.length);
-  } catch (error) {
-    // Handle the out-of-bounds index case.
-    return;
-  }
-
-  // Get the random voucher code.
-  var voucherCode = vouchers[randomIndex];
-
-  // Validate the voucher code.
-  if (!voucherCode) {
-    // Handle the invalid voucher code case.
-    return;
-  }
-
-  // Display the voucher code to the user.
-  alert("Your voucher code is: " + voucherCode);
-}
-        </script>
              <script>
       function aboutUs() {
         alert( "OUR TEAM: 1.Firoz 2.Sai Thanai 3.Imroj 4.Reehan 5.Pasyanthi 6.Yamini");
