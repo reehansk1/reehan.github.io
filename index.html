@@ -211,20 +211,31 @@ function showPosition(position) {
 
 // Add the pushpin to the map.
 map.entities.push(pushpin);
-
-// Create a new location object.
 var location = new Microsoft.Maps.Location(13.110350, 80.213196);
-
-// Create a new pushpin object at the specified location.
 var pushpin = new Microsoft.Maps.Pushpin(location, {
   title: 'VIROGREEN INDIA pvt ltd',
   subtitle: '09940831313'
 });
-
-// Add the pushpin to the map.
 map.entities.push(pushpin);
-    
-            document.getElementById("map").style.display = "block";
+    var location = new Microsoft.Maps.Location(19.073334, 72.995331);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'Green India E-Waste & Recycling Opc Private Limited',
+  subtitle: '07666562225'
+});
+    map.entities.push(pushpin);
+    var location = new Microsoft.Maps.Location(17.307474, 78.530312);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'Mega E-Waste and Metals Private Limited',
+  subtitle: '07666562225'
+});
+    map.entities.push(pushpin);
+       var location = new Microsoft.Maps.Location(28.582350, 77.250076);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'Hindustan E-Waste Management',
+  subtitle: '01141553113'
+});
+    map.entities.push(pushpin);
+    document.getElementById("map").style.display = "block";
             Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
                 searchManager = new Microsoft.Maps.Search.SearchManager(map);
                 searchEwasteFacilities();
