@@ -252,9 +252,32 @@ function showPosition(position) {
     };
 
     map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
+    var pushpin = new Microsoft.Maps.Pushpin(map.getCenter());
+    map.entities.push(pushpin);
+    var pushpinOptions1 = {
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
+  title: 'VIROGREEN INDIA pvt ltd phn:09940831313'
+};
+var location1 = new Microsoft.Maps.Location(13.110350, 80.213196);
+var pushpin1 = new Microsoft.Maps.Pushpin(location1, pushpinOptions1);
+map.entities.push(pushpin1);
+var redirectUrl1 = 'https://virogreen.in/';
+Microsoft.Maps.Events.addHandler(pushpin1, 'click', function (e) {
+  window.location.href = redirectUrl1;
+});
 
-  var pushpin = new Microsoft.Maps.Pushpin(map.getCenter());
-map.entities.push(pushpin);
+// Pushpin 2
+var pushpinOptions2 = {
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
+  title: 'Green India E-Waste & Recycling Opc Private Limited phn:07666562225'
+};
+var location2 = new Microsoft.Maps.Location(19.073334, 72.995331);
+var pushpin2 = new Microsoft.Maps.Pushpin(location2, pushpinOptions2);
+map.entities.push(pushpin2);
+var redirectUrl2 = 'http://greenindiarecycling.co.in/';
+Microsoft.Maps.Events.addHandler(pushpin2, 'click', function (e) {
+  window.location.href = redirectUrl2;
+});
 
     
     document.getElementById("map").style.display = "block";
