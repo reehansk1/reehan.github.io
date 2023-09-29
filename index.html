@@ -254,6 +254,137 @@ function showPosition(position) {
     map = new Microsoft.Maps.Map(document.getElementById("map"), mapOptions);
     var pushpin = new Microsoft.Maps.Pushpin(map.getCenter());
     map.entities.push(pushpin);
+
+    var pushpinOptions1 = {
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
+  title: 'VIROGREEN INDIA pvt ltd phn:09940831313'
+};
+var location1 = new Microsoft.Maps.Location(13.110350, 80.213196);
+var pushpin1 = new Microsoft.Maps.Pushpin(location1, pushpinOptions1);
+map.entities.push(pushpin1);
+var redirectUrl1 = 'https://virogreen.in/';
+Microsoft.Maps.Events.addHandler(pushpin1, 'click', function (e) {
+  window.location.href = redirectUrl1;
+});
+
+// Pushpin 2
+var pushpinOptions2 = {
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
+  title: 'Green India E-Waste & Recycling Opc Private Limited phn:07666562225'
+};
+var location2 = new Microsoft.Maps.Location(19.073334, 72.995331);
+var pushpin2 = new Microsoft.Maps.Pushpin(location2, pushpinOptions2);
+map.entities.push(pushpin2);
+var redirectUrl2 = 'http://greenindiarecycling.co.in/';
+Microsoft.Maps.Events.addHandler(pushpin2, 'click', function (e) {
+  window.location.href = redirectUrl2;
+});
+        var pushpinOptions3 = {
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png', 
+  title: 'Mega E-Waste and Metals Private Limited phn:07666562225'
+    };
+        var location3 = new Microsoft.Maps.Location(17.307474, 78.530312);
+var pushpin3 = new Microsoft.Maps.Pushpin(location3, pushpinOptions3);
+
+    map.entities.push(pushpin3);
+    var redirectUrl3 = 'https://virogreen.in/';
+Microsoft.Maps.Events.addHandler(pushpin3, 'click', function (e) {
+  window.location.href = redirectUrl3;
+});
+
+        var pushpinOptions4 = {
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png', 
+  title: 'Hindustan E-Waste Management phn:01141553113'
+        };
+       var location4 = new Microsoft.Maps.Location(28.582350, 77.250076);
+var pushpin4 = new Microsoft.Maps.Pushpin(location4, pushpinOptions4);
+
+    map.entities.push(pushpin4);
+    var redirectUrl4 = 'https://virogreen.in/';
+Microsoft.Maps.Events.addHandler(pushpin4, 'click', function (e) {
+  window.location.href = redirectUrl4;
+});
+
+        var pushpinOptions5 = {
+  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png', 
+ title: 'E tech e waste recycling'
+        };
+    var location5 = new Microsoft.Maps.Location(17.106093,78.257623);
+var pushpin5 = new Microsoft.Maps.Pushpin(location5, pushpinOptions5);
+ 
+
+map.entities.push(pushpin5);
+    var redirectUrl5 = 'https://virogreen.in/';
+Microsoft.Maps.Events.addHandler(pushpin5, 'click', function (e) {
+  window.location.href = redirectUrl5;
+});
+    
+    var location = new Microsoft.Maps.Location(13.110350, 80.213196);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'VIROGREEN INDIA pvt ltd',
+  subtitle: '09940831313'
+});
+map.entities.push(pushpin);
+var location = new Microsoft.Maps.Location(17.106093,78.257623);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'E tech e waste recycling',
+  subtitle: '09'
+});
+map.entities.push(pushpin);
+var location = new Microsoft.Maps.Location(17.170627,78.470575);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'Earth sense recycling pvt ltd',
+  subtitle: '18004190161'
+});
+map.entities.push(pushpin);
+var location = new Microsoft.Maps.Location(17.242778,78.482181);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'Re sustainablity recycling pvt ltd',
+  subtitle: '09032124522'
+});
+map.entities.push(pushpin);
+var location = new Microsoft.Maps.Location(17.289384,78.440685);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'Greenland waste management system',
+  subtitle: '09393868642'
+});
+map.entities.push(pushpin);
+var location = new Microsoft.Maps.Location(17.303337,78.418148);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'Green scrap solution',
+  subtitle: ''
+});
+map.entities.push(pushpin);
+var location = new Microsoft.Maps.Location(17.315467,78.434115);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'Greenland waste management system',
+  subtitle: '09393868642'
+});
+map.entities.push(pushpin);
+var location = new Microsoft.Maps.Location(17.313899,78.436670);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'Shambala resources',
+  subtitle: '09505681637'
+});
+map.entities.push(pushpin);
+var location = new Microsoft.Maps.Location(17.373258,78.414791);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'E waste and old scrap buyers',
+  subtitle: ''
+});
+map.entities.push(pushpin);
+var location = new Microsoft.Maps.Location(17.409907,78.436697);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'Z enviro industries pvt ltd',
+  subtitle: '04065222259'
+});
+map.entities.push(pushpin);
+var location = new Microsoft.Maps.Location(17.419187,78.494686);
+var pushpin = new Microsoft.Maps.Pushpin(location, {
+  title: 'E waste recylers and traders',
+  subtitle: ''
+});
+map.entities.push(pushpin);
     var location = new Microsoft.Maps.Location(28.342715,77.326607);
 var pushpin = new Microsoft.Maps.Pushpin(location, {
   title: 'Pro e waste recycling',
@@ -401,69 +532,7 @@ var pushpin = new Microsoft.Maps.Pushpin(location, {
   title: 'Eco clean solution'
 });
 map.entities.push(pushpin);
-    var pushpinOptions1 = {
-  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
-  title: 'VIROGREEN INDIA pvt ltd phn:09940831313'
-};
-var location1 = new Microsoft.Maps.Location(13.110350, 80.213196);
-var pushpin1 = new Microsoft.Maps.Pushpin(location1, pushpinOptions1);
-map.entities.push(pushpin1);
-var redirectUrl1 = 'https://virogreen.in/';
-Microsoft.Maps.Events.addHandler(pushpin1, 'click', function (e) {
-  window.location.href = redirectUrl1;
-});
-
-// Pushpin 2
-var pushpinOptions2 = {
-  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png',
-  title: 'Green India E-Waste & Recycling Opc Private Limited phn:07666562225'
-};
-var location2 = new Microsoft.Maps.Location(19.073334, 72.995331);
-var pushpin2 = new Microsoft.Maps.Pushpin(location2, pushpinOptions2);
-map.entities.push(pushpin2);
-var redirectUrl2 = 'http://greenindiarecycling.co.in/';
-Microsoft.Maps.Events.addHandler(pushpin2, 'click', function (e) {
-  window.location.href = redirectUrl2;
-});
-        var pushpinOptions3 = {
-  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png', 
-  title: 'Mega E-Waste and Metals Private Limited phn:07666562225'
-    };
-        var location3 = new Microsoft.Maps.Location(17.307474, 78.530312);
-var pushpin3 = new Microsoft.Maps.Pushpin(location3, pushpinOptions3);
-
-    map.entities.push(pushpin3);
-    var redirectUrl3 = 'https://virogreen.in/';
-Microsoft.Maps.Events.addHandler(pushpin3, 'click', function (e) {
-  window.location.href = redirectUrl3;
-});
-
-        var pushpinOptions4 = {
-  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png', 
-  title: 'Hindustan E-Waste Management phn:01141553113'
-        };
-       var location4 = new Microsoft.Maps.Location(28.582350, 77.250076);
-var pushpin4 = new Microsoft.Maps.Pushpin(location4, pushpinOptions4);
-
-    map.entities.push(pushpin4);
-    var redirectUrl4 = 'https://virogreen.in/';
-Microsoft.Maps.Events.addHandler(pushpin4, 'click', function (e) {
-  window.location.href = redirectUrl4;
-});
-
-        var pushpinOptions5 = {
-  icon: 'https://www.bingmapsportal.com/Content/images/poi_custom.png', 
- title: 'E tech e waste recycling'
-        };
-    var location5 = new Microsoft.Maps.Location(17.106093,78.257623);
-var pushpin5 = new Microsoft.Maps.Pushpin(location5, pushpinOptions5);
- 
-
-map.entities.push(pushpin5);
-    var redirectUrl5 = 'https://virogreen.in/';
-Microsoft.Maps.Events.addHandler(pushpin5, 'click', function (e) {
-  window.location.href = redirectUrl5;
-});
+    
 document.getElementById("map").style.display = "block";
     Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
     searchManager = new Microsoft.Maps.Search.SearchManager(map);
