@@ -610,12 +610,9 @@ map.entities.push(pushpin28);
 Microsoft.Maps.Events.addHandler(pushpin28, 'click', function (e) {
   window.location.href = redirectUrl28;
 });
-
-
-    
-    document.getElementById("map").style.display = "block";
-            Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
-                searchManager = new Microsoft.Maps.Search.SearchManager(map);
+document.getElementById("map").style.display = "block";
+    Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+    searchManager = new Microsoft.Maps.Search.SearchManager(map);
                 searchEwasteFacilities();
             });
         }
